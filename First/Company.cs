@@ -9,40 +9,64 @@ namespace MyCompany
     namespace MyApp
     {
         class Company
-        {   
-            private Employeer[] _workers;
-            public Company()
+        {
+            private string _name;
+            private Director _director;
+            
+            public String Name
             {
-                _workers = new Employeer[0];
+                get
+                {
+                    return _name;
+                }
+                set
+                {
+                    _name = value;
+                }
             }
-            public Employeer getWorker(int index)
+            public Director Director
             {
-                if (index < 0 || index >= _workers.Length)
-                    throw new IndexOutOfRangeException("The number of worker isn't correct");
-                return _workers[index];
+                get
+                {
+                    return _director;
+                }
             }
-            public Company addWorker(Employeer employee)
+            public Company(string name, Director director)
             {
-                Employeer[] tmp = new Employeer[_workers.Length + 1];
-                Array.Copy(_workers, tmp, _workers.Length);
-                tmp[_workers.Length] = employee;
-                _workers = tmp;
+                Name = name;
+                _director = director;
+            }
+            public IWorker getWorker(int index)
+            {
+                return Workers[index];
+            }
+            public Company addWorker(IWorker worker)
+            {
+                this._director.listWorkers.Add(worker);
                 return this;
             }
-            public Company removeWorker(Employeer employee)
+            public Company removeWorker(Predicate<IWorker> predicate)
             {
-                _workers = _workers.Where(item => item != employee).ToArray();
+                int index = Workers.FindIndex(predicate);
+                if(index >= 0)
+                    Workers.RemoveAt(index);
                 return this;
+            }
+            public Company removeWorker(IWorker worker)
+            {
+                Workers.Remove(worker);
+                return this;
+            }
+            public List<IWorker> Workers
+            {
+                get
+                {
+                    return _director.listWorkers;
+                }
             }
             public override string ToString()
             {
-                string res  = "[\n";
-                foreach (var item in _workers)
-                {
-                    res += "\t{\n" +item.ToString() + "\t}\n";
-                }
-                res += "]";
-                return res;
+                return $"Company: {Name}\n" + Director.ToString();
             }
         }
     }

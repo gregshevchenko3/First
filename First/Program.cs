@@ -18,25 +18,47 @@ namespace MyCompany
                 //Human mulder = new Human("Fox", "Mulder", new DateTime(1975, 4, 12), Gender.MALE);
                 //mulder.Show();
 
-                Employeer mulder = new Employeer("Fox", "Mulder", new DateTime(1975, 4, 12), Gender.MALE, 12000.00f);
-                Tutor tutor = new Tutor("John", "Doe", new DateTime(1981, 12, 10), Gender.MALE, 24000.00f, "Physics");
+                Worker mulder = new Worker("Fox", "Mulder", new DateTime(1975, 4, 12), Gender.MALE, 12000.00f);
+                Worker outlaw = new Worker("Jayne", "Cobb", new DateTime(1972, 1, 21), Gender.MALE, 24000.00f);
 
-                Console.WriteLine("Create \"Company\" object & and add two workers");
-                Company company = new Company();
-                company.addWorker(mulder).addWorker(tutor);
-                Console.WriteLine(company);
+                Company comp = new Company("Serenity", new Director("Malcolm", "Reynolds", new DateTime(1970, 07, 21), Gender.MALE, 84000.00f));
+                Console.WriteLine(comp);
+                comp.addWorker(mulder).addWorker(outlaw);
+                Console.WriteLine(comp);
 
-                Console.WriteLine("remove \"tutor\"");
-                company.removeWorker(tutor);
-                Console.WriteLine(company);
+                Console.WriteLine("Remove \"mulder\" \n");
+                comp.removeWorker(mulder);
+                Console.WriteLine(comp);
 
-                Console.WriteLine("remove \"mulder\"");
-                company.removeWorker(mulder);
-                Console.WriteLine(company);
+                Console.WriteLine("Remove \"Jayne Cobb\" \n");
+                comp.removeWorker((worker) => {
+                    Worker w = (Worker)worker;
+                    return w.Name == "Jayne" && w.Surname == "Cobb";
+                });
+                Console.WriteLine(comp);
 
-                Console.WriteLine("remove \"tutor\"");
-                company.removeWorker(tutor);
-                Console.WriteLine(company);
+                Car zaporozhets = new Car();
+                zaporozhets.Print("zaporozhets");
+                Point2D point = new Point2D();
+                Point2D point2 = new Point2D(100, 100, Colors.BLUE);
+                ++point;
+                point++;
+                Console.WriteLine(point);
+                Console.WriteLine(-point);
+                Console.WriteLine(point + point2);
+
+
+                point *= point2;
+                point = point - point2;
+                Console.WriteLine(point);
+
+                point *= 3;
+                point = 10 * point;
+                Console.WriteLine(point);
+
+
+                Console.WriteLine();
+                Console.WriteLine(point/point2);
             }
         }
     }
