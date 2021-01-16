@@ -45,11 +45,12 @@
   <ItemGroup>
     <Compile Include="Car.cs" />
     <Compile Include="Cashier.cs" />
+    <Compile Include="Company.cs" />
     <Compile Include="Director.cs" />
     <Compile Include="IManager.cs" />
     <Compile Include="IWorker.cs" />
     <Compile Include="Point2D.cs" />
-    <Compile Include="Company.cs" />
+    <Compile Include="Department.cs" />
     <Compile Include="Employeer.cs" />
     <Compile Include="Human.cs" />
     <Compile Include="Program.cs" />

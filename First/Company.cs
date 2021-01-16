@@ -4,70 +4,47 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyCompany
+namespace MyCompany.MyApp
 {
-    namespace MyApp
+    class Company : Department
     {
-        class Company
+        List<Department> _departments;
+
+        public List<Department> Departments
         {
-            private string _name;
-            private Director _director;
-            
-            public String Name
-            {
-                get
-                {
-                    return _name;
-                }
-                set
-                {
-                    _name = value;
-                }
+            get => _departments;
+        }
+        public Company(string name, Director director) : base(name, director) {
+            _departments = new List<Department>();
+        }
+        public Company addDepartment(Department department)
+        {
+            _departments.Add(department);
+            return this;
+        }
+        public Company removeDepartment(Department department)
+        {
+            _departments.Remove(department);
+            return this;
+        }
+        public Company removeDepartment(Predicate<Department> predicate)
+        {
+            int index = _departments.FindIndex(predicate);
+            if (index >= 0) {
+                _departments.RemoveAt(index);
             }
-            public Director Director
+            return this;
+        }
+        public override string ToString()
+        {
+            string departments_list = "";
+            foreach (Department item in _departments)
             {
-                get
-                {
-                    return _director;
-                }
+                departments_list += "______________________\n";
+                departments_list += item.ToString();
+                departments_list += "\n______________________\n";
             }
-            public Company(string name, Director director)
-            {
-                Name = name;
-                _director = director;
-            }
-            public IWorker getWorker(int index)
-            {
-                return Workers[index];
-            }
-            public Company addWorker(IWorker worker)
-            {
-                this._director.listWorkers.Add(worker);
-                return this;
-            }
-            public Company removeWorker(Predicate<IWorker> predicate)
-            {
-                int index = Workers.FindIndex(predicate);
-                if(index >= 0)
-                    Workers.RemoveAt(index);
-                return this;
-            }
-            public Company removeWorker(IWorker worker)
-            {
-                Workers.Remove(worker);
-                return this;
-            }
-            public List<IWorker> Workers
-            {
-                get
-                {
-                    return _director.listWorkers;
-                }
-            }
-            public override string ToString()
-            {
-                return $"Company: {Name}\n" + Director.ToString();
-            }
+            return base.ToString() + departments_list;
         }
     }
 }
