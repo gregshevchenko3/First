@@ -18,10 +18,10 @@ namespace MyCompany
                 //Human mulder = new Human("Fox", "Mulder", new DateTime(1975, 4, 12), Gender.MALE);
                 //mulder.Show();
 
-                Worker mulder = new Worker("Fox", "Mulder", new DateTime(1975, 4, 12), Gender.MALE, 12000.00f);
-                Worker outlaw = new Worker("Jayne", "Cobb", new DateTime(1972, 1, 21), Gender.MALE, 24000.00f);
+                Employeer mulder = new Employeer("Fox", "Mulder", new DateTime(1975, 4, 12), Gender.MALE, 12000.00f);
+                Employeer outlaw = new Employeer("Jayne", "Cobb", new DateTime(1972, 1, 21), Gender.MALE, 24000.00f);
 
-                Company comp = new Company("Serenity", new Director("Malcolm", "Reynolds", new DateTime(1970, 07, 21), Gender.MALE, 84000.00f));
+                Company comp = new Company("Serenity", new Manager("Malcolm", "Reynolds", new DateTime(1970, 07, 21), Gender.MALE, 84000.00f));
                 Console.WriteLine(comp);
                 comp.addWorker(mulder).addWorker(outlaw);
                 Console.WriteLine(comp);
@@ -32,20 +32,20 @@ namespace MyCompany
 
                 Console.WriteLine("Remove \"Jayne Cobb\" \n");
                 comp.removeWorker((worker) => {
-                    Worker w = (Worker)worker;
+                    Employeer w = (Employeer)worker;
                     return w.Name == "Jayne" && w.Surname == "Cobb";
                 });
                 Console.WriteLine(comp);
 
                 Console.WriteLine("Create departments");
                 Department Criminals = new Department("Outlaws",
-                    new Director("Mark", "Sheppard", new DateTime(1977, 3, 3), Gender.MALE, 120000.00f)
+                    new Manager("Mark", "Sheppard", new DateTime(1977, 3, 3), Gender.MALE, 120000.00f)
                     ).addWorker(outlaw).addWorker(
-                    new Worker("Zoe", "Washburne", new DateTime(1970, 9, 9), Gender.FEMALE, 24000.00f));
+                    new Employeer("Zoe", "Washburne", new DateTime(1970, 9, 9), Gender.FEMALE, 24000.00f));
                 comp.addDepartment(Criminals).addDepartment(
-                        new Department("Other", new Director("Derrial", "Book", new DateTime(1965, 12, 12), Gender.MALE, 500.00f))
-                        .addWorker(new Worker("Simon", "Tam", new DateTime(1985, 10, 10), Gender.MALE, 750.00f))
-                        .addWorker(new Worker("River", "Tam", new DateTime(1988, 7, 24), Gender.MALE, 750.00f))
+                        new Department("Other", new Manager("Derrial", "Book", new DateTime(1965, 12, 12), Gender.MALE, 500.00f))
+                        .addWorker(new Employeer("Simon", "Tam", new DateTime(1985, 10, 10), Gender.MALE, 750.00f))
+                        .addWorker(new Employeer("River", "Tam", new DateTime(1988, 7, 24), Gender.MALE, 750.00f))
                     );
                 Console.WriteLine(comp);
 

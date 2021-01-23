@@ -14,7 +14,7 @@ namespace MyCompany.MyApp
         {
             get => _departments;
         }
-        public Company(string name, Director director) : base(name, director) {
+        public Company(string name, Manager director) : base(name, director) {
             _departments = new List<Department>();
         }
         public Company addDepartment(Department department)

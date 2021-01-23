@@ -11,7 +11,7 @@ namespace MyCompany
         class Department
         {
             private string _name;
-            private Director _director;
+            private Manager _manager;
             
             public String Name
             {
@@ -24,17 +24,17 @@ namespace MyCompany
                     _name = value;
                 }
             }
-            public Director Director
+            public Manager Manager
             {
                 get
                 {
-                    return _director;
+                    return _manager;
                 }
             }
-            public Department(string name, Director director)
+            public Department(string name, Manager manager)
             {
                 Name = name;
-                _director = director;
+                _manager = manager;
             }
             public IWorker getWorker(int index)
             {
@@ -42,7 +42,7 @@ namespace MyCompany
             }
             public Department addWorker(IWorker worker)
             {
-                this._director.listWorkers.Add(worker);
+                this._manager.listWorkers.Add(worker);
                 return this;
             }
             public Department removeWorker(Predicate<IWorker> predicate)
@@ -61,12 +61,12 @@ namespace MyCompany
             {
                 get
                 {
-                    return _director.listWorkers;
+                    return _manager.listWorkers;
                 }
             }
             public override string ToString()
             {
-                return $"Company: {Name}\n" + Director.ToString();
+                return $"Department: {Name}\n; Head of Department: " + Manager.ToString();
             }
         }
     }

@@ -8,9 +8,10 @@ namespace MyCompany
 {
     namespace MyApp
     {
-        class Employeer : Human
+        class Employeer : Human, IWorker
         {
             private float _salary;
+            private string _work;
             public float Salary
             {
                 get
@@ -27,6 +28,13 @@ namespace MyCompany
                     {
                         throw new ArgumentOutOfRangeException("Salari is invalid");
                     }
+                }
+            }
+            public bool IsWorking
+            {
+                get
+                {
+                    return _work != null && _work.Length > 0;
                 }
             }
             public Employeer():base()
@@ -46,6 +54,10 @@ namespace MyCompany
             public override string ToString()
             {
                 return base.ToString() + $"\tSalary: {Salary}$\n";
+            }
+            public string Work()
+            {
+                return _work;
             }
         }
     }
